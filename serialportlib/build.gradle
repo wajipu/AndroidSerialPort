@@ -79,34 +79,34 @@ dependencies {
 //}
 
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                groupId = 'com.github.wajipu'
-                artifactId = 'serialportlib'
-                version = '2.0.0'
-                artifact("$buildDir/outputs/aar/serialportlib-release.aar"){
-                    name = 'serialportlib'
-                    extension = 'aar'
-                    classifier = '2.0.0'
-                }
-            }
-        }
-        repositories {
-            maven {
-                url "https://jitpack.io"
-            }
-        }
-    }
-}
+// afterEvaluate {
+//     publishing {
+//         publications {
+//             release(MavenPublication) {
+//                 groupId = 'com.github.wajipu'
+//                 artifactId = 'serialportlib'
+//                 version = '2.0.0'
+//                 artifact("$buildDir/outputs/aar/serialportlib-release.aar"){
+//                     name = 'serialportlib'
+//                     extension = 'aar'
+//                     classifier = '2.0.0'
+//                 }
+//             }
+//         }
+//         repositories {
+//             maven {
+//                 url "https://jitpack.io"
+//             }
+//         }
+//     }
+// }
 //for upload
 //apply plugin: 'com.novoda.bintray-release'
-//publish {
-//    userOrg = 'wajipu' //注册的用户名
-//    groupId = 'com.wajipu.serialport' //引用时第一部分
-//    artifactId = 'serialport' //引用时的第二部分
-//    publishVersion = '1.3.0' //引用时的第三部分，版本号
-//    desc = 'android serialport'//描述
-//    website = 'https://github.com/wajipu/AndroidSerialPort'//项目地址
-//}
+publish {
+   userOrg = 'wajipu' //注册的用户名
+   groupId = 'com.github.wajipu' //引用时第一部分
+   artifactId = 'serialport' //引用时的第二部分
+   publishVersion = '2.0.0' //引用时的第三部分，版本号
+   desc = 'android serialport'//描述
+   website = 'https://github.com/wajipu/AndroidSerialPort'//项目地址
+}
