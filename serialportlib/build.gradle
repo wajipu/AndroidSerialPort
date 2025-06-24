@@ -91,7 +91,7 @@ afterEvaluate {
                 groupId = 'com.github.wajipu'
                 artifactId = 'serialportlib'
                 version = '2.0.0'
-                artifact("$buildDir/outputs/aar/serialportlib-release.aar") {
+                artifact("$buildDir/outputs/aar/AndroidSerialPort-2.0.0.aar") {
                   builtBy renameAar
                 }
             }
