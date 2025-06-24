@@ -101,7 +101,7 @@ dependencies {
 //     }
 // }
 //for upload
-//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.novoda.bintray-release'
 publish {
    userOrg = 'wajipu' //注册的用户名
    groupId = 'com.github.wajipu' //引用时第一部分
