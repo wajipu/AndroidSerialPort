@@ -78,14 +78,24 @@ dependencies {
 //    }
 //}
 
+task renameAar(type: Copy) {
+    from("$buildDir/outputs/aar/serialportlib-release.aar")
+    into("$buildDir/outputs/aar/")
+    rename { "AndroidSerialPort-2.0.0.aar" }
+}
+
+renameAar.dependsOn(assembleRelease)
+
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 groupId = 'com.github.wajipu'
                 artifactId = 'AndroidSerialPort'
-                version = '1.0.0'
-                artifact("$buildDir/outputs/aar/serialportlib-release.aar")
+                version = '2.0.0'
+                artifact("$buildDir/outputs/aar/AndroidSerialPort-2.0.0.aar") {
+                    builtBy renameAar // 确保重命名任务完成后使用新文件
+                }
             }
         }
         repositories {
