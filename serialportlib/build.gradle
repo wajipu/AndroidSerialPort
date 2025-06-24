@@ -84,9 +84,10 @@ task renameAar(type: Copy) {
     rename { "AndroidSerialPort-2.0.0.aar" }
 }
 
-renameAar.dependsOn(assembleRelease)
+
 
 afterEvaluate {
+    renameAar.dependsOn('assembleRelease')
     publishing {
         publications {
             release(MavenPublication) {
