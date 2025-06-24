@@ -78,11 +78,6 @@ dependencies {
 //    }
 //}
 
-task renameAar(type: Copy) {
-    from "$buildDir/outputs/aar/serialportlib-release.aar"
-    into "$buildDir/outputs/aar"
-    rename 'serialportlib-release.aar', 'serialportlib-2.0.0.aar'
-}
 
 afterEvaluate {
     publishing {
@@ -91,8 +86,11 @@ afterEvaluate {
                 groupId = 'com.github.wajipu'
                 artifactId = 'serialportlib'
                 version = '2.0.0'
-                dependsOn renameAar
-                artifact("$buildDir/outputs/aar/serialportlib-2.0.0.aar")
+                artifact("$buildDir/outputs/aar/serialportlib-release.aar"){
+                    name = 'serialportlib'
+                    extension = 'aar'
+                    classifier = '2.0.0'
+                }
             }
         }
         repositories {
