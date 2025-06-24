@@ -1,0 +1,1 @@
+D:\study\AndroidSerialPort\serialportlib\build\intermediates\cmake\debug\obj\arm64-v8a
