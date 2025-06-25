@@ -92,7 +92,7 @@ afterEvaluate {
                 artifactId = 'serialportlib'
                 version = '2.0.0'
                 artifact("$buildDir/outputs/aar/AndroidSerialPort-2.0.0.aar") {
-                  builtBy renameAar
+                    builtBy renameAar // 确保重命名任务完成后使用新文件
                 }
             }
         }
@@ -103,6 +103,10 @@ afterEvaluate {
         }
     }
 }
+
+// 确保发布任务依赖重命名任务
+publishing.dependsOn renameAar
+
 //for upload
 //apply plugin: 'com.novoda.bintray-release'
 //publish {
