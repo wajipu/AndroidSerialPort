@@ -84,7 +84,6 @@ task renameAar(type: Copy) {
     rename { "AndroidSerialPort-2.0.0.aar" }
 }
 
-// 这里确保 renameAar 任务在发布任务之前执行
 afterEvaluate {
     publishing {
         publications {
