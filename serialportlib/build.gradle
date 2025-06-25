@@ -16,6 +16,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        archivesBaseName = "AndroidSerialPort"  // 基础名称
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
@@ -23,6 +24,12 @@ android {
                 cppFlags ""
             }
         }
+
+        libraryVariants.all { variant ->
+           variant.outputs.all {
+             outputFileName = "${archivesBaseName}-2.0.0.aar"
+           }
+      }
     }
 
     buildTypes {
@@ -78,12 +85,6 @@ dependencies {
 //    }
 //}
 
-task renameAar(type: Copy) {
-    from("$buildDir/outputs/aar/serialportlib-release.aar")
-    into("$buildDir/outputs/aar/")
-    rename { "AndroidSerialPort-2.0.0.aar" }
-}
-
 afterEvaluate {
     publishing {
         publications {
@@ -91,9 +92,7 @@ afterEvaluate {
                 groupId = 'com.github.wajipu'
                 artifactId = 'serialportlib'
                 version = '2.0.0'
-                artifact("$buildDir/outputs/aar/AndroidSerialPort-2.0.0.aar") {
-                    builtBy renameAar // 确保重命名任务完成后使用新文件
-                }
+                artifact("$buildDir/outputs/aar/AndroidSerialPort-2.0.0.aar") 
             }
         }
         repositories {
@@ -103,16 +102,6 @@ afterEvaluate {
         }
     }
 }
-
-// 确保在构建结束后才执行发布任务
-task publishRelease {
-    dependsOn renameAar // 确保发布任务依赖重命名任务
-    doLast {
-        // 在这里调用发布操作
-        publishing.publishing { publishToMaven() }
-    }
-}
-
 
 //for upload
 //apply plugin: 'com.novoda.bintray-release'
