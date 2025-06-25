@@ -84,6 +84,7 @@ task renameAar(type: Copy) {
     rename { "AndroidSerialPort-2.0.0.aar" }
 }
 
+// 这里确保 renameAar 任务在发布任务之前执行
 afterEvaluate {
     publishing {
         publications {
@@ -104,8 +105,15 @@ afterEvaluate {
     }
 }
 
-// 确保发布任务依赖重命名任务
-publishing.dependsOn renameAar
+// 确保在构建结束后才执行发布任务
+task publishRelease {
+    dependsOn renameAar // 确保发布任务依赖重命名任务
+    doLast {
+        // 在这里调用发布操作
+        publishing.publishing { publishToMaven() }
+    }
+}
+
 
 //for upload
 //apply plugin: 'com.novoda.bintray-release'
